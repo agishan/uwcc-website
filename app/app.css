@@ -7,9 +7,26 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white text-black;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+/* Custom colors for the design system */
+@layer utilities {
+  .bg-primary {
+    background-color: #00897b;
   }
+  .text-primary {
+    color: #00897b;
+  }
+  .border-primary {
+    border-color: #00897b;
+  }
+  .bg-accent {
+    background-color: #e0e0e0;
+  }
+}
+
+/* Ensure text is visible */
+* {
+  color: inherit;
 }
