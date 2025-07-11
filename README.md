@@ -501,3 +501,57 @@ This project is for the University Cooking Club. All rights reserved.
 ---
 
 **Built with ❤️ for the UWCC community**
+
+## 📚 How to Upload a New Class (Event) with Recipes and Images
+
+### 1. Add Event Images
+- Place all event images in a new folder under `public/images/events/`.
+  - Example: `public/images/events/asian-foods-2025/`
+- Name your group photos and recipe images clearly:
+  - `group1.jpg`, `group2.jpg`, `group3.jpg` (for group/event photos)
+  - `spring-rolls-1.jpg`, `pad-kra-pao-1.jpg`, etc. (for recipe images)
+
+### 2. Update the Events Data
+- Open `app/data/events.ts`.
+- Add a new event object with:
+  - `id`: Unique number (increment from previous)
+  - `title`: Name of the class/event
+  - `date`: Date of the event (YYYY-MM-DD)
+  - `description`: Short summary of the event
+  - `groupPhotos`: Array of 3 group photo paths (see above)
+  - `albumUrl`: Link to the Google Photos album for the event
+  - `recipeIds`: Array of recipe IDs (see next step)
+  - `tags`: Any tags you want (e.g., cuisine, year)
+
+### 3. Add Recipes
+- Open `app/data/recipes.ts`.
+- For each recipe in the class, add a new object with:
+  - `id`: Unique number (increment from previous)
+  - `eventId`: The event's ID
+  - `sequence`: The order in which the recipe was made in the class
+  - `name`: Recipe name
+  - `servings` or `makes`: How much it makes/serves
+  - `images`: Array of image paths (from the event folder)
+  - `ingredients`: Array of ingredient strings
+  - `instructions`: Array of step-by-step instructions
+  - (Optional) `pairing`, `note`, etc.
+
+### 4. Update Recipe IDs in the Event
+- Make sure the `recipeIds` array in your event matches the IDs of the recipes you just added.
+
+### 5. (Optional) Update Google Photos Album
+- Upload all your event photos to Google Photos.
+- Get the shareable album link and paste it in the `albumUrl` field for the event.
+
+### 6. Check Your Work
+- Start your dev server (`npm run dev`).
+- Visit the Events and Recipes pages to make sure everything displays correctly.
+- Click into the event and recipe detail pages to verify images and instructions show up.
+
+### 📝 Summary Checklist
+- [ ] Add images to `public/images/events/<event-folder>/`
+- [ ] Add event object to `app/data/events.ts`
+- [ ] Add recipe objects to `app/data/recipes.ts`
+- [ ] Link recipes to event via `recipeIds`
+- [ ] Add Google Photos album link
+- [ ] Test in browser

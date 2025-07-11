@@ -4,12 +4,9 @@ export default function About() {
       <h1 className="text-3xl font-bold mb-6 text-black">About Us</h1>
       <div className="mb-6">
         <img
-          src="https://source.unsplash.com/1200x300/?cooking,club"
+          src="/images/banner/Banner.png"
           alt="Club Banner"
           className="w-full h-48 object-cover rounded-lg mb-4"
-          onError={(e) => {
-            e.currentTarget.src = "https://source.unsplash.com/1200x300/?kitchen,food";
-          }}
         />
         <p className="text-lg text-gray-700 mb-4">
           <span className="font-semibold text-black">UW Cooking Club</span> is a community of food lovers at the university who come together to cook, learn, and share delicious meals. Whether you're a beginner or a seasoned chef, our club welcomes everyone who's passionate about food and fun!

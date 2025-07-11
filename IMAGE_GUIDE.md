@@ -9,9 +9,16 @@ uwcc-website/
 ├── public/
 │   ├── images/
 │   │   ├── events/
-│   │   │   ├── sushi-night.jpg
-│   │   │   ├── pasta-party.jpg
-│   │   │   └── baking-workshop.jpg
+│   │   │   ├── pasta-class/
+│   │   │   │   └── (your pasta class images)
+│   │   │   ├── one-piece-cooking/
+│   │   │   │   ├── OnePiece-Main.png
+│   │   │   │   ├── OnePiece_Foodshot_1.jpg
+│   │   │   │   └── OnePiece-Foodshot-2.jpg
+│   │   │   ├── egg-flight-cooking/
+│   │   │   │   ├── EggClass_overhead.jpg
+│   │   │   │   ├── Egg_Class_PeopleShot.jpg
+│   │   │   │   └── Egg_Class_FoodShot1.jpg
 │   │   ├── execs/
 │   │   │   ├── alice-kim.jpg
 │   │   │   ├── ben-lee.jpg
@@ -160,5 +167,67 @@ const events = [
   image: "/images/execs/alice-kim.jpg" // Your local image
 }
 ```
+
+## 🖼️ How to Reference the New Egg Flight Class Images
+
+### **In your code (e.g., events.tsx or events.$id.tsx):**
+```tsx
+// For the event card image:
+image: "/images/events/egg-flight-cooking/EggClass_overhead.jpg"
+
+// For detail images:
+images: [
+  "/images/events/egg-flight-cooking/Egg_Class_FoodShot1.jpg",
+  "/images/events/egg-flight-cooking/Egg_Class_PeopleShot.jpg"
+]
+```
+
+## Image Storage Structure
+
+- All images are stored in `public/images/events/<event-folder>/`.
+- Each event has its own folder (e.g., `asian-foods-2025`, `egg-class-2025`).
+- Place all group photos and recipe images for an event in its folder.
+
+## Naming Conventions
+
+- **Group photos:**
+  - `group1.jpg`, `group2.jpg`, `group3.jpg`
+- **Recipe images:**
+  - Use the recipe name and a number, e.g., `spring-rolls-1.jpg`, `pad-kra-pao-1.jpg`, `egg-tarts-1.jpg`
+- **Other images:**
+  - Use descriptive names for any additional images.
+
+## Referencing Images in Data Files
+
+- In `app/data/events.ts`, reference group photos in the `groupPhotos` array:
+  ```js
+  groupPhotos: [
+    "/images/events/asian-foods-2025/group1.jpg",
+    "/images/events/asian-foods-2025/group2.jpg",
+    "/images/events/asian-foods-2025/group3.jpg"
+  ]
+  ```
+- In `app/data/recipes.ts`, reference recipe images in the `images` array:
+  ```js
+  images: [
+    "/images/events/asian-foods-2025/spring-rolls-1.jpg"
+  ]
+  ```
+
+## Google Photos Album
+
+- Upload all event photos to Google Photos.
+- Paste the album link in the `albumUrl` field in the event object.
+
+## Best Practices
+
+- Use lowercase and hyphens for folder and file names.
+- Keep image sizes reasonable for web (ideally < 500KB per image).
+- Test image paths in your browser to ensure they load.
+- Remove unused images to keep the repo clean.
+
+---
+
+For more, see the README section on uploading a new class.
 
 This guide will help you easily manage and update all images on the UWCC website! 

@@ -1,44 +1,54 @@
-import EventCard from "../components/EventCard";
-import SearchBar from "../components/SearchBar";
-
-const events = [
-  {
-    id: 1,
-    title: "Sushi Night",
-    date: "2024-03-15",
-    image: "https://source.unsplash.com/400x300/?sushi",
-    description: "Learned to roll sushi and make miso soup!",
-    tags: ["Beginner", "Japanese", "1.5h"],
-  },
-  {
-    id: 2,
-    title: "Pasta Party",
-    date: "2024-02-10",
-    image: "https://source.unsplash.com/400x300/?pasta",
-    description: "Homemade pasta from scratch!",
-    tags: ["Intermediate", "Italian", "2h"],
-  },
-  {
-    id: 3,
-    title: "Baking Workshop",
-    date: "2024-01-20",
-    image: "https://source.unsplash.com/400x300/?baking",
-    description: "Learn to make bread and pastries!",
-    tags: ["Beginner", "Baking", "2.5h"],
-  },
-  // Add more events as needed
-];
+import { Link } from "react-router";
+import Card from "../components/Card";
+import { events } from "../data/events";
+import { recipes } from "../data/recipes";
 
 export default function Events() {
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6 text-black">Past Events</h1>
-      <div className="mb-6">
-        <SearchBar placeholder="Search events..." className="max-w-md" />
-      </div>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <Card key={event.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+            <img
+              src={event.image}
+              alt={event.title}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-black">{event.title}</h3>
+              <span className="text-sm text-gray-500">{event.date}</span>
+              <p className="text-gray-700 mb-4">{event.description}</p>
+              <div className="flex flex-wrap gap-1 mb-4">
+                {event.tags.map((tag) => (
+                  <span key={tag} className="bg-primary text-white text-xs px-2 py-1 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold text-black">Recipes:</span>
+                <ul>
+                  {event.recipeIds.map(rid => {
+                    const recipe = recipes.find(r => r.id === rid);
+                    return recipe ? (
+                      <li key={rid}>
+                        <Link to={`/recipes/${rid}`} className="text-primary hover:underline">
+                          {recipe.title}
+                        </Link>
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              </div>
+              <Link
+                to={`/events/${event.id}`}
+                className="inline-block bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors"
+              >
+                View Event
+              </Link>
+            </div>
+          </Card>
         ))}
       </div>
     </main>
